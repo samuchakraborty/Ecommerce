@@ -50,6 +50,7 @@ flutter:
   assets:
     - assets/banner/
     - assets/products/
+    - assets/product.json
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
