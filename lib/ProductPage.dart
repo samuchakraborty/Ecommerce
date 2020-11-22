@@ -1,10 +1,11 @@
+import 'package:carousel/product_model.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
-import 'models/ProductItem.dart';
+
 
 class ProductPage extends StatelessWidget {
-  final ProductItem products;
+  final Data products;
 
   ProductPage({this.products});
 
@@ -15,7 +16,7 @@ class ProductPage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            products.productName,
+            products.name,
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -24,21 +25,24 @@ class ProductPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Hero(
-                  tag: products.image,
-                  child: AspectRatio(
+                
+                   AspectRatio(
                     aspectRatio: 1 / 1,
-                    child: Image(
-                      image: AssetImage(products.image),
-                    ),
+                    child:  Image.network(
+                                                "https://test.anazbd.com/" +
+                                                    products.featureImage,
+                                                fit: BoxFit.contain,
+                                                height: 160,
+                                                width: 150,
+                                              ),
                   ),
-                ),
-                Text(products.productName),
+                
+                Text(products.name),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Text(
-                    "${products.price}\$",
+                    "MRP:  "+"${products.originalPrice}\$",
                     style: TextStyle(
                         fontSize: 17,
                         color: Colors.amber,
@@ -61,7 +65,7 @@ class ProductPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(products.productDescription),
+                Text(products.description),
               ],
             ),
           ),
