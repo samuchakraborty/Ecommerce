@@ -7,6 +7,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -580,6 +581,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         } else {
                           return Container(
                             height: MediaQuery.of(context).size.height / 2,
+                            color: HexColor("#f2f2f2"),
                             child: GridView.count(
                               shrinkWrap: true,
                               //scrollDirection: Axis.vertical,
@@ -593,40 +595,48 @@ class _MyHomePageState extends State<MyHomePage> {
                                   {
                                     return Stack(
                                       children: [
-                                        Container(
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                alignment: Alignment.topLeft,
-                                                height: 15,
-                                                child: Text(
-                                                  "Sale",
-                                                  style: TextStyle(
-                                                    backgroundColor:
-                                                        Colors.green,
+                                        Card(
+                                          color: Colors.white,
+                                          child: Container(
+                                            height: 1000,
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  alignment: Alignment.topLeft,
+                                                  height: 15,
+                                                  child: Text(
+                                                    "Sale",
+                                                    style: TextStyle(
+                                                      backgroundColor:
+                                                          Colors.green,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Image.network(
-                                                "https://test.anazbd.com/" +
-                                                    snapshot.data[index]
-                                                        .featureImage,
-                                                fit: BoxFit.contain,
-                                                height: 160,
-                                                width: 150,
-                                              ),
-                                              Text(
-                                                snapshot.data[index].name,
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              Text("TK: " +
-                                                  (snapshot.data[index]
-                                                          .originalPrice)
-                                                      .toString()),
-                                            ],
+                                                Image.network(
+                                                  "https://test.anazbd.com/" +
+                                                      snapshot.data[index]
+                                                          .featureImage,
+                                                  fit: BoxFit.contain,
+                                                  height: 160,
+                                                  width: 150,
+                                                ),
+                                                Text(
+                                                    snapshot.data[index].name,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                               
+                                                Padding(
+                                                  padding: const EdgeInsets.all(3.0),
+                                                  child: Text("TK: " +
+                                                      (snapshot.data[index]
+                                                              .originalPrice)
+                                                          .toString()),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                         Material(

@@ -32,14 +32,14 @@ class Data {
   String slug;
   String deliveryCharge;
   String featureImage;
-  Null warrantyPeriod;
-  Null warrantyPolicy;
-  Null highlights;
+  String warrantyPeriod;
+  String warrantyPolicy;
+  String highlights;
   String description;
   String featureImageResized;
   String thumbFeatureImage;
   String shortDescription;
-  Null additionalDeliveryCharge;
+  String additionalDeliveryCharge;
   String status;
   String deliverySizeId;
   String rating;
@@ -142,37 +142,18 @@ class Data {
   }
 }
 
-
-// class PhotoList {
-//   List<Data> photos;
-//   PhotoList({this.photos});
-
-//   factory PhotoList.fromJson(List<dynamic> jsonParsed) {
-//      List<Data> photoss = new List<Data>();
-//      photoss = jsonParsed.map((i) => Data.fromJson(i)).toList();
-
-
-
-
-
-//     return PhotoList(photos: photoss);
-//   }
-// }
-
-
-
 class Variants {
   String colorId;
   String sizeId;
   String sku;
   String qty;
   int price;
-  Null salePrice;
-  Null mrp;
-  Null image;
-  Null imageResized;
-  Null saleStartDay;
-  Null saleEndDay;
+  String salePrice;
+  String mrp;
+ String image;
+  String imageResized;
+  String saleStartDay;
+  String saleEndDay;
 
   Variants(
       {this.colorId,
@@ -188,8 +169,6 @@ class Variants {
       this.saleEndDay});
 
   Variants.fromJson(Map<String, dynamic> json) {
-
-
     colorId = json['color_id'];
     sizeId = json['size_id'];
     sku = json['sku'];
@@ -223,14 +202,14 @@ class Variants {
 class Seller {
   String name;
   String email;
-  Null number;
+  String number;
   String type;
   String status;
   String image;
   String deliveryCharge;
   String shopName;
-  Null emailVerifiedAt;
-  Null deletedAt;
+  String emailVerifiedAt;
+  String deletedAt;
   String charge;
   String isCommissionBasedOnProduct;
   String commission;
@@ -241,7 +220,7 @@ class Seller {
   String otp;
   String slug;
   String isPremium;
-  Null premiumOrder;
+  String premiumOrder;
   String isAnazmallSeller;
   String anazmallOrder;
 

@@ -1,3 +1,4 @@
+import 'package:carousel/CartPage.dart';
 import 'package:carousel/product_model.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,18 @@ class ProductPage extends StatelessWidget {
                   child: Row(
                     children: [
                       OutlinedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return CartPage(
+                                   products: products,
+                                  );
+                                },
+                              ),
+                            );
+                          },
                           icon: Icon(EvaIcons.shoppingCart),
                           label: Text("Cart")),
                       OutlinedButton.icon(
