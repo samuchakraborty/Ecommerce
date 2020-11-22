@@ -30,6 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.0
   carousel_pro: ^1.0.0
   eva_icons_flutter: ^2.0.1
+  flutter_html: ^1.0.0
+  http: ^0.12.2
+
 
 dev_dependencies:
   flutter_test:

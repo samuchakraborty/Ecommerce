@@ -162,8 +162,8 @@ class Data {
 
 
 class Variants {
-  Null colorId;
-  Null sizeId;
+  String colorId;
+  String sizeId;
   String sku;
   String qty;
   int price;
@@ -188,6 +188,8 @@ class Variants {
       this.saleEndDay});
 
   Variants.fromJson(Map<String, dynamic> json) {
+
+
     colorId = json['color_id'];
     sizeId = json['size_id'];
     sku = json['sku'];

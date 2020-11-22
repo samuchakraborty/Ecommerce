@@ -1,8 +1,7 @@
 import 'package:carousel/product_model.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:flutter_html/flutter_html.dart';
 
 class ProductPage extends StatelessWidget {
   final Data products;
@@ -25,24 +24,21 @@ class ProductPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
-                   AspectRatio(
-                    aspectRatio: 1 / 1,
-                    child:  Image.network(
-                                                "https://test.anazbd.com/" +
-                                                    products.featureImage,
-                                                fit: BoxFit.contain,
-                                                height: 160,
-                                                width: 150,
-                                              ),
+                AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: Image.network(
+                    "https://test.anazbd.com/" + products.featureImage,
+                    fit: BoxFit.contain,
+                    height: 160,
+                    width: 150,
                   ),
-                
+                ),
                 Text(products.name),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Text(
-                    "MRP:  "+"${products.originalPrice}\$",
+                    "MRP:  " + "${products.originalPrice}",
                     style: TextStyle(
                         fontSize: 17,
                         color: Colors.amber,
@@ -65,7 +61,11 @@ class ProductPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(products.description),
+                Html(
+                  data: products.description,
+                ),
+
+                // Text(products.description),
               ],
             ),
           ),

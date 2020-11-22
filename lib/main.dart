@@ -7,6 +7,8 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,13 +34,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<String> _loadPhotoAssets() async {
-    return await rootBundle.loadString("assets/product.json");
+  Future<Response> _loadPhotoAssets() async {
+    //return await rootBundle.loadString("assets/product.json");
+    return await http.get("https://test.anazbd.com/api/products");
   }
 
   Future loadPhoto() async {
-    String jsonString = await _loadPhotoAssets();
-    final jsonResponse = json.decode(jsonString);
+    http.Response jsonString = await _loadPhotoAssets();
+    final jsonResponse = json.decode(jsonString.body);
 
     AllProduct productList = new AllProduct.fromJson(jsonResponse);
     // print(photoList.photos[0].albumId);
@@ -635,7 +638,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       ProductPage(
-                                                    products: snapshot.data[index],
+                                                    products:
+                                                        snapshot.data[index],
                                                   ),
                                                 ),
                                               );
