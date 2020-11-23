@@ -1,11 +1,11 @@
-import 'package:carousel/product_model.dart';
+
 
 import 'package:flutter/material.dart';
 
 class CartPage extends StatelessWidget {
-  final Data products;
+  // final Data products;
 
-  CartPage({this.products});
+  // CartPage({this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -60,25 +60,25 @@ class CartPage extends StatelessWidget {
                 height: 30,
               ),
 
-              Container(
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Image.network(
-                          "https://test.anazbd.com/" + products.featureImage,
-                          fit: BoxFit.contain,
-                          height: 70,
-                          width: 70,
-                        ),
-                      ),
-                      Container(child: Text(products.name,style: TextStyle(fontSize: 10,),)),
-                      SizedBox(
-                width: 30,
-              ),
-                      Container(child: Text("${products.originalPrice}")),
-                    ]),
-              ),
+              // Container(
+              //   child: Row(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Container(
+              //           child: Image.network(
+              //             "https://test.anazbd.com/" + products.featureImage,
+              //             fit: BoxFit.contain,
+              //             height: 70,
+              //             width: 70,
+              //           ),
+              //         ),
+              //         Container(child: Text(products.name,style: TextStyle(fontSize: 10,),)),
+              //         SizedBox(
+              //   width: 30,
+              // ),
+              //         Container(child: Text("${products.originalPrice}")),
+              //       ]),
+              // ),
 
              // Container(height: 30, child: Text(products.name)),
               // Padding(

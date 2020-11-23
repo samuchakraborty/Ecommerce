@@ -11,6 +11,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
+import 'CartPage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -113,8 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: Icon(EvaIcons.shoppingBagOutline),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+              },
+              icon: Icon(EvaIcons.shoppingCart),
             )
           ],
         ),
@@ -567,7 +571,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 //
                 Container(
-                  height: MediaQuery.of(context).size.height * 9,
+                  height: MediaQuery.of(context).size.height * 8,
                   //  height: double.infinity,
                   child: FutureBuilder(
                       future: loadPhoto(),
@@ -599,7 +603,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           color: Colors.white,
                                           child: Container(
                                             height: 1000,
-                                            child: Column(
+                                            child: ListView(
                                               children: [
                                                 Container(
                                                   alignment: Alignment.topLeft,
@@ -621,15 +625,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   width: 150,
                                                 ),
                                                 Text(
-                                                    snapshot.data[index].name,
-                                                    style: TextStyle(
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                               
+                                                  snapshot.data[index].name,
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
                                                 Padding(
-                                                  padding: const EdgeInsets.all(3.0),
+                                                  padding:
+                                                      const EdgeInsets.all(3.0),
                                                   child: Text("TK: " +
                                                       (snapshot.data[index]
                                                               .originalPrice)
