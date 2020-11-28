@@ -1,9 +1,10 @@
-import 'package:carousel/CartPage.dart';
+import 'package:carousel/Bloc/Item_bloc.dart';
+
 import 'package:carousel/product_model.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductPage extends StatelessWidget {
   final Data products;
@@ -53,14 +54,20 @@ class ProductPage extends StatelessWidget {
                     children: [
                       OutlinedButton.icon(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return CartPage(productData: products);
-                                },
-                              ),
-                            );
+                            bloc.addToCart(products.name);
+                            bloc.addToCartPrice("${products.originalPrice}");
+                            bloc.addToCartPicture(products.featureImage);
+
+                            Fluttertoast.showToast(
+                                msg: "Item is to cart",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+
+                            //  bloc.addToCart(products);
                           },
                           icon: Icon(EvaIcons.shoppingCart),
                           label: Text("Cart")),

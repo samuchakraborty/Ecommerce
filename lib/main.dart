@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:carousel/ProductPage.dart';
+import 'package:carousel/checkOut.dart';
 import 'package:carousel/product_model.dart';
 import 'package:carousel/widgets/CategoryItem.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
@@ -11,7 +12,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-import 'CartPage.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -116,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Checkout()));
               },
               icon: Icon(EvaIcons.shoppingCart),
             )
@@ -659,7 +661,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                               );
                                             },
                                           ),
+                                          
                                         ),
+                                        // IconButton(icon: Icon(EvaIcons.fileAdd),
+                                        // onPressed: (){}),
                                       ],
                                     );
                                   }
