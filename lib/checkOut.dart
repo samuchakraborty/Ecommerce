@@ -25,7 +25,7 @@ class Checkout extends StatelessWidget {
                 Expanded(child: checkoutListBuilder(snapshot)),
                 RaisedButton(
                   onPressed: () {
-                   bloc.removeFromCart(snapshot.data['cart items']);
+                   bloc.removeFromCartList();
                     Fluttertoast.showToast(
                         msg: "Delivery is going on",
                         toastLength: Toast.LENGTH_SHORT,
