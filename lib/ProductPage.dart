@@ -58,6 +58,7 @@ class ProductPage extends StatelessWidget {
                             bloc.addToCartPrice("${products.originalPrice}");
                             bloc.addToCartPicture(products.featureImage);
 
+                            
                             Fluttertoast.showToast(
                                 msg: "Item is to cart",
                                 toastLength: Toast.LENGTH_SHORT,

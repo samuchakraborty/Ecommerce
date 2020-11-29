@@ -1,12 +1,10 @@
 import 'package:carousel/Bloc/Item_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:carousel/product_model.dart';
+
 
 class Checkout extends StatelessWidget {
-  Checkout({this.products});
-
-  final Data products;
+  
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +23,7 @@ class Checkout extends StatelessWidget {
                 Expanded(child: checkoutListBuilder(snapshot)),
                 RaisedButton(
                   onPressed: () {
-                   bloc.removeFromCartList();
+                    bloc.removeFromCartList();
                     Fluttertoast.showToast(
                         msg: "Delivery is going on",
                         toastLength: Toast.LENGTH_SHORT,
@@ -34,7 +32,6 @@ class Checkout extends StatelessWidget {
                         backgroundColor: Colors.red,
                         textColor: Colors.white,
                         fontSize: 16.0);
-                   
                   },
                   child: Text("Checkout"),
                   color: Theme.of(context).primaryColor,
@@ -59,6 +56,8 @@ Widget checkoutListBuilder(snapshot) {
       final cartListPrice = snapshot.data["cart items Price"];
       final cartListPicture = snapshot.data["cart items Picture"];
 
+      
+
       return ListTile(
         leading: Image.network(
           "https://test.anazbd.com/" + cartListPicture[i],
@@ -66,9 +65,8 @@ Widget checkoutListBuilder(snapshot) {
           height: 40,
           width: 40,
         ),
-        title: Text(cartList[i]),
-        //   title: Text(cartListPrice[i]),
-        subtitle: Text("\$${cartListPrice[i]}"),
+          title: Text(cartListPrice[i]),
+        subtitle:   Text("\$${cartListPrice[i]}"),
         trailing: IconButton(
           icon: Icon(Icons.remove_shopping_cart),
           onPressed: () {

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:badges/badges.dart';
+
 import 'package:carousel/ProductPage.dart';
 import 'package:carousel/checkOut.dart';
 import 'package:carousel/product_model.dart';
@@ -12,8 +14,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-
-
 void main() {
   runApp(MyApp());
 }
@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
     );
   }
 }
@@ -38,6 +39,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
   Future<Response> _loadPhotoAssets() async {
     //return await rootBundle.loadString("assets/product.json");
     return await http.get("https://test.anazbd.com/api/products");
@@ -115,13 +118,21 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           actions: [
-            IconButton(
+            
+            Badge(
+              position: BadgePosition.topEnd(top: 0, end: 3),
+              badgeContent: Text(
+                _counter.toString(),
+                style: TextStyle(color: Colors.white),
+              ),
+              child:IconButton(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Checkout()));
               },
               icon: Icon(EvaIcons.shoppingCart),
-            )
+            ),
+            ),
           ],
         ),
         body: Container(
@@ -661,7 +672,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                               );
                                             },
                                           ),
-                                          
                                         ),
                                         // IconButton(icon: Icon(EvaIcons.fileAdd),
                                         // onPressed: (){}),
