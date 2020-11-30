@@ -2,6 +2,8 @@
 import 'dart:async';
 
 class CartItemsBloc {
+ 
+
   /// The [cartStreamController] is an object of the StreamController class
   /// .broadcast enables the stream to be read in multiple screens of our app
   final cartStreamController = StreamController.broadcast();
@@ -17,6 +19,7 @@ class CartItemsBloc {
   };
 
   void addToCart(item) {
+    
     //allItems['shop items'].remove(item);
     allItems['cart items'].add(item);
     cartStreamController.sink.add(allItems);
@@ -34,20 +37,24 @@ class CartItemsBloc {
     cartStreamController.sink.add(allItems);
   }
 
+  
+
   void removeFromCart(item) {
     allItems['cart items'].remove(item);
 
     //allItems['shop items'].add(item);
     cartStreamController.sink.add(allItems);
   }
-void removeFromCartList() {
+
+  void removeFromCartList() {
     allItems['cart items'].clear();
     allItems['cart items Price'].clear();
     allItems['cart items Picture'].clear();
+   
 
     //allItems['shop items'].add(item);
     cartStreamController.sink.add(allItems);
-   }
+  }
 
   /// The [dispose] method is used
   /// to automatically close the stream when the widget is removed from the widget tree

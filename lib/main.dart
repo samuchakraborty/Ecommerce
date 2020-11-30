@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:badges/badges.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:carousel/ProductPage.dart';
 import 'package:carousel/checkOut.dart';
 import 'package:carousel/product_model.dart';
@@ -13,6 +13,8 @@ import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:carousel/Bloc/Item_bloc.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -38,8 +40,10 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+   int _counter = 0;
+
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  //int _counter = 0;
 
   Future<Response> _loadPhotoAssets() async {
     //return await rootBundle.loadString("assets/product.json");
@@ -118,20 +122,25 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           actions: [
-            
             Badge(
               position: BadgePosition.topEnd(top: 0, end: 3),
               badgeContent: Text(
                 _counter.toString(),
                 style: TextStyle(color: Colors.white),
               ),
-              child:IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Checkout()));
-              },
-              icon: Icon(EvaIcons.shoppingCart),
-            ),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CheckOut()));
+                  //
+                  // setState(() {
+                  //   _counter += 1;
+                  // });
+
+                  //
+                },
+                icon: Icon(EvaIcons.shoppingCart),
+              ),
             ),
           ],
         ),
@@ -634,7 +643,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       snapshot.data[index]
                                                           .featureImage,
                                                   fit: BoxFit.contain,
-                                                  height: 160,
+                                                  height: 150,
                                                   width: 150,
                                                 ),
                                                 Text(
@@ -644,37 +653,78 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       fontWeight:
                                                           FontWeight.w400),
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(3.0),
-                                                  child: Text("TK: " +
-                                                      (snapshot.data[index]
-                                                              .originalPrice)
-                                                          .toString()),
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              3.0),
+                                                      child: Text("TK: " +
+                                                          (snapshot.data[index]
+                                                                  .originalPrice)
+                                                              .toString()),
+                                                    ),
+                                                    Container(
+                                                      alignment:
+                                                          Alignment(20, 0),
+                                                      child: IconButton(
+                                                          icon: Icon(Icons.add),
+                                                          onPressed: () {
+                                                            bloc.addToCart(
+                                                                snapshot
+                                                                    .data[index]
+                                                                    .name);
+                                                            bloc.addToCartPrice(
+                                                                "${snapshot.data[index].originalPrice}");
+                                                            bloc.addToCartPicture(
+                                                                snapshot
+                                                                    .data[index]
+                                                                    .featureImage);
+                                                            setState(() {
+                                                              _counter += 1;
+                                                            });
+
+                                                            Fluttertoast.showToast(
+                                                                msg:
+                                                                    "Item is to cart",
+                                                                toastLength: Toast
+                                                                    .LENGTH_SHORT,
+                                                                gravity:
+                                                                    ToastGravity
+                                                                        .CENTER,
+                                                                timeInSecForIosWeb:
+                                                                    1,
+                                                                backgroundColor:
+                                                                    Colors.red,
+                                                                textColor:
+                                                                    Colors
+                                                                        .white,
+                                                                fontSize: 16.0);
+                                                          }),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
                                           ),
                                         ),
-                                        Material(
-                                          color: Colors.transparent,
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProductPage(
-                                                    products:
-                                                        snapshot.data[index],
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                        // IconButton(icon: Icon(EvaIcons.fileAdd),
-                                        // onPressed: (){}),
+                                        // Material(
+                                        //   color: Colors.transparent,
+                                        //   child: InkWell(
+                                        //     onTap: () {
+                                        //       Navigator.push(
+                                        //         context,
+                                        //         MaterialPageRoute(
+                                        //           builder: (context) =>
+                                        //               ProductPage(
+                                        //             products:
+                                        //                 snapshot.data[index],
+                                        //           ),
+                                        //         ),
+                                        //       );
+                                        //     },
+                                        //   ),
+                                        // ),
                                       ],
                                     );
                                   }
