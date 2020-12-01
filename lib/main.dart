@@ -15,7 +15,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:carousel/Bloc/Item_bloc.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -40,7 +39,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-   int _counter = 0;
+int _counter = 0;
 
 class _MyHomePageState extends State<MyHomePage> {
   //int _counter = 0;
@@ -606,7 +605,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         } else {
                           return Container(
-                            height: MediaQuery.of(context).size.height / 2,
+                           // height: MediaQuery.of(context).size.height / 2,
                             color: HexColor("#f2f2f2"),
                             child: GridView.count(
                               shrinkWrap: true,
@@ -619,113 +618,105 @@ class _MyHomePageState extends State<MyHomePage> {
                                 snapshot.data.length,
                                 (index) {
                                   {
-                                    return Stack(
-                                      children: [
-                                        Card(
-                                          color: Colors.white,
-                                          child: Container(
-                                            height: 1000,
-                                            child: ListView(
+                                    return Card(
+                                      color: Colors.white,
+                                      child: Container(
+                                        //height: 1000,
+                                        child: ListView(
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.topLeft,
+                                              height: 15,
+                                              child: Text(
+                                                "Sale",
+                                                style: TextStyle(
+                                                  backgroundColor:
+                                                      Colors.green,
+                                                ),
+                                              ),
+                                            ),
+                                            FlatButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ProductPage(
+                                                        products: snapshot
+                                                            .data[index],
+                                                      ),
+                                                    ));
+                                              },
+                                              child: Image.network(
+                                                "https://test.anazbd.com/" +
+                                                    snapshot.data[index]
+                                                        .featureImage,
+                                                fit: BoxFit.contain,
+                                                height: 150,
+                                                width: 150,
+                                              ),
+                                            ),
+                                            Text(
+                                              snapshot.data[index].name,
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight:
+                                                      FontWeight.w400),
+                                            ),
+                                            Row(
                                               children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(
+                                                          3.0),
+                                                  child: Text("TK: " +
+                                                      (snapshot.data[index]
+                                                              .originalPrice)
+                                                          .toString()),
+                                                ),
                                                 Container(
-                                                  alignment: Alignment.topLeft,
-                                                  height: 15,
-                                                  child: Text(
-                                                    "Sale",
-                                                    style: TextStyle(
-                                                      backgroundColor:
-                                                          Colors.green,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Image.network(
-                                                  "https://test.anazbd.com/" +
-                                                      snapshot.data[index]
-                                                          .featureImage,
-                                                  fit: BoxFit.contain,
-                                                  height: 150,
-                                                  width: 150,
-                                                ),
-                                                Text(
-                                                  snapshot.data[index].name,
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              3.0),
-                                                      child: Text("TK: " +
-                                                          (snapshot.data[index]
-                                                                  .originalPrice)
-                                                              .toString()),
-                                                    ),
-                                                    Container(
-                                                      alignment:
-                                                          Alignment(20, 0),
-                                                      child: IconButton(
-                                                          icon: Icon(Icons.add),
-                                                          onPressed: () {
-                                                            bloc.addToCart(
-                                                                snapshot
-                                                                    .data[index]
-                                                                    .name);
-                                                            bloc.addToCartPrice(
-                                                                "${snapshot.data[index].originalPrice}");
-                                                            bloc.addToCartPicture(
-                                                                snapshot
-                                                                    .data[index]
-                                                                    .featureImage);
-                                                            setState(() {
-                                                              _counter += 1;
-                                                            });
+                                                  alignment:
+                                                      Alignment(20, 0),
+                                                  child: IconButton(
+                                                      icon: Icon(Icons.add),
+                                                      onPressed: () {
+                                                        bloc.addToCart(
+                                                            snapshot
+                                                                .data[index]
+                                                                .name);
+                                                        bloc.addToCartPrice(
+                                                            "${snapshot.data[index].originalPrice}");
+                                                        bloc.addToCartPicture(
+                                                            snapshot
+                                                                .data[index]
+                                                                .featureImage);
+                                                        setState(() {
+                                                          _counter += 1;
+                                                        });
 
-                                                            Fluttertoast.showToast(
-                                                                msg:
-                                                                    "Item is to cart",
-                                                                toastLength: Toast
-                                                                    .LENGTH_SHORT,
-                                                                gravity:
-                                                                    ToastGravity
-                                                                        .CENTER,
-                                                                timeInSecForIosWeb:
-                                                                    1,
-                                                                backgroundColor:
-                                                                    Colors.red,
-                                                                textColor:
-                                                                    Colors
-                                                                        .white,
-                                                                fontSize: 16.0);
-                                                          }),
-                                                    ),
-                                                  ],
+                                                        Fluttertoast.showToast(
+                                                            msg:
+                                                                "Item is to cart",
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity:
+                                                                ToastGravity
+                                                                    .CENTER,
+                                                            timeInSecForIosWeb:
+                                                                1,
+                                                            backgroundColor:
+                                                                Colors.red,
+                                                            textColor:
+                                                                Colors
+                                                                    .white,
+                                                            fontSize: 16.0);
+                                                      }),
                                                 ),
                                               ],
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        // Material(
-                                        //   color: Colors.transparent,
-                                        //   child: InkWell(
-                                        //     onTap: () {
-                                        //       Navigator.push(
-                                        //         context,
-                                        //         MaterialPageRoute(
-                                        //           builder: (context) =>
-                                        //               ProductPage(
-                                        //             products:
-                                        //                 snapshot.data[index],
-                                        //           ),
-                                        //         ),
-                                        //       );
-                                        //     },
-                                        //   ),
-                                        // ),
-                                      ],
+                                      ),
                                     );
                                   }
                                 },
